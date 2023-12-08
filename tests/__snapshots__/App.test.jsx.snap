@@ -24,11 +24,7 @@ exports[`Navigation component > renders navigation component 1`] = `
             </a>
           </li>
           <li>
-            <a
-              href="/cart"
-            >
-              CART
-            </a>
+            CART
           </li>
         </ul>
       </nav>
@@ -54,11 +50,7 @@ exports[`Navigation component > renders navigation component 1`] = `
           </a>
         </li>
         <li>
-          <a
-            href="/cart"
-          >
-            CART
-          </a>
+          CART
         </li>
       </ul>
     </nav>

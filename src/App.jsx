@@ -1,13 +1,9 @@
-
-import Navigation from './components/navigation'
 import './App.css'
+import Navigation from './components/navigation'
 
-function App() {
+export default function App() {
  
-
   return (
     <Navigation />
   )
 }
-
-export default App
