@@ -4,6 +4,7 @@ import { describe, it, expect } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from '../src/App';
+import userEvent from '@testing-library/user-event';
 
 describe('App', () => {
   it('renders headline', () => {
@@ -12,12 +13,20 @@ describe('App', () => {
         <App />
       </BrowserRouter>
       );
-
     screen.debug();
-
-    // check if App components renders headline
   });
 });
+
+describe('Navigation Router', () => {
+  it('renders routes', async() => {
+    render(<App />, {wrapper: BrowserRouter})
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('link', {name: /store/i}))
+    expect(screen.getByText(/products/i))
+  })
+})
+
 
  describe('Navigation component', () => {
 
@@ -52,8 +61,8 @@ describe('App', () => {
         </BrowserRouter>
         );
 
-        expect(screen.getByRole('list').textContent).toMatch(/home/i)
-        expect(screen.getByRole('list').textContent).toMatch(/store/i)
-        expect(screen.getByRole('list').textContent).toMatch(/cart/i)
+        expect(screen.getByRole('link', {name: /home/i}))
+        expect(screen.getByRole('link', {name: /store/i}))
+        expect(screen.getByRole('link', {name: /cart/i}))
     })
    });

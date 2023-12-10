@@ -1,7 +1,7 @@
 
 const Storefront = () => {
     return (
-        <h1>STORE FRONT!!</h1>
+        <h1>STORE FRONT</h1>
     )
 }
 
