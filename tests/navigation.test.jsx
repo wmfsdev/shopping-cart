@@ -1,10 +1,12 @@
 
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, RouterProvider, createMemoryRouter } from 'react-router-dom';
 
+import { routesConfig } from '../src/Router';
 import App from '../src/App';
 import userEvent from '@testing-library/user-event';
+
 
 describe('App', () => {
   it('renders headline', () => {
@@ -19,11 +21,14 @@ describe('App', () => {
 
 describe('Navigation Router', () => {
   it('renders routes', async() => {
-    render(<App />, {wrapper: BrowserRouter})
+
+    const router = createMemoryRouter(routesConfig, {initialEntries: ["/storefront"]})
+    render(<RouterProvider router={router} />)
+
     const user = userEvent.setup()
 
     await user.click(screen.getByRole('link', {name: /store/i}))
-    expect(screen.getByText(/products/i))
+    expect(screen.getByRole("heading", {name: /products!!/i}))
   })
 })
 
