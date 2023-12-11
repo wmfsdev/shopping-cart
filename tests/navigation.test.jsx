@@ -1,6 +1,6 @@
 
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { BrowserRouter, RouterProvider, createMemoryRouter } from 'react-router-dom';
 
 import { routesConfig } from '../src/Router';
@@ -20,15 +20,31 @@ describe('App', () => {
 });
 
 describe('Navigation Router', () => {
-  it('renders routes', async() => {
 
-    const router = createMemoryRouter(routesConfig, {initialEntries: ["/storefront"]})
+  beforeEach(() => {
+    const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
     render(<RouterProvider router={router} />)
+  })
 
+  it('renders storefront', async() => {
     const user = userEvent.setup()
+    // const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
+    // render(<RouterProvider router={router} />)
 
+    await user.click(screen.getByRole('link', {name: /home/i}))
+    expect(screen.getByRole("heading", {name: /store front/i}))
+  })
+
+  it('renders products page', async () => {
+    const user = userEvent.setup()
     await user.click(screen.getByRole('link', {name: /store/i}))
     expect(screen.getByRole("heading", {name: /products!!/i}))
+  })
+
+  it('renders shopping cart', async () => {
+    const user = userEvent.setup()
+    await user.click(screen.getByRole('link', {name: /cart/i}))
+    expect(screen.getByRole("heading", {name: /cart/i}))
   })
 })
 
