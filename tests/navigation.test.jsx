@@ -28,9 +28,6 @@ describe('Navigation Router', () => {
 
   it('renders storefront', async() => {
     const user = userEvent.setup()
-    // const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
-    // render(<RouterProvider router={router} />)
-
     await user.click(screen.getByRole('link', {name: /home/i}))
     expect(screen.getByRole("heading", {name: /store front/i}))
   })
