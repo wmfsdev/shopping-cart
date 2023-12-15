@@ -18,7 +18,7 @@ const Products = () => {
     return (
         <>
         <h1>PRODUCTS!!</h1>
-        { error && <div>API is down</div> }
+        { error && <h2>API is down</h2> }
       </>
     )
 }

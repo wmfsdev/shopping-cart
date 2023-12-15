@@ -11,8 +11,6 @@ async function withFetch() {
         return json;
     } catch(e) {
         return e
-        // throw new Error(e.message)
-        // possibly need to lose
     }
 }
 
@@ -51,7 +49,7 @@ const fetchMock = vi
 
                 fetchMock.mockImplementation(() => Promise.reject({message: 'API is down'}))
         
-                const error = await withFetch() 
+                await withFetch() 
         
                 expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
                 expect(fetchMock.getMockName()).toEqual('fetch')
@@ -59,13 +57,8 @@ const fetchMock = vi
                 render(<Products />);
                         
                 await waitFor(() => {
+                    // screen.debug()
                     expect(screen.getByText('API is down')).toBeInTheDocument();
                 })
-        
-                //  const errorMessage = await screen.getByText('API is down');
-                //  expect(errorMessage).toBeInTheDocument();
             });
     });
-
-
- 
