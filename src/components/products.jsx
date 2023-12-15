@@ -8,13 +8,17 @@ const Products = () => {
       fetch('https://fakestoreapi.com/products?limit=5')
         .then((response) => response.json())
         .then((user) => setUser(user))
-        .catch((error) => setError(error.message));
+        .catch((error) => {
+          console.log("product", error)
+          setError(error)
+        });
     }, []);
+    //console.log(error)
 
     return (
         <>
         <h1>PRODUCTS!!</h1>
-        { error && <div className='fetch-error'>API is down</div> }
+        { error && <div>API is down</div> }
       </>
     )
 }
