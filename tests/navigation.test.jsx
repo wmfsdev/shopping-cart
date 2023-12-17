@@ -15,7 +15,7 @@ describe('App', () => {
         <App />
       </BrowserRouter>
       );
-    screen.debug();
+   // screen.debug();
   });
 });
 

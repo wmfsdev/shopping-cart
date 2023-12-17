@@ -1,26 +1,32 @@
 import { useState, useEffect } from "react"
+import Item from "./item"
+import Error from "./error"
 
 const Products = () => {
-  const [user, setUser] = useState(null)
+  const [data, setData] = useState(false)
   const [error, setError] = useState(false)
 
-    useEffect(() => {
-      fetch('https://fakestoreapi.com/products?limit=5')
-        .then((response) => response.json())
-        .then((user) => setUser(user))
-        .catch((error) => {
-          console.log("product", error)
-          setError(error)
-        });
-    }, []);
-    //console.log(error)
-
-    return (
-        <>
-        <h1>PRODUCTS!!</h1>
-        { error && <h2>API is down</h2> }
-      </>
-    )
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products?limit=5')
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => setError(error));
+  }, []);
+  
+  return (
+      <>
+      <h1>PRODUCTS!!</h1>
+      <div className="product-view">
+        { data && data.map((obj) => (
+          <Item
+            key={obj.id}
+            title={obj.title}
+            img={obj.image} /> 
+        ))} 
+      </div>
+      { error && <Error error={error}/> }
+    </>
+  )
 }
-
+// { error && <h2>{error.message}</h2> }
 export default Products
