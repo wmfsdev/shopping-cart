@@ -1,10 +1,10 @@
 import { Link, Outlet } from "react-router-dom"
+import { useState } from "react"
 
 const Navigation = () => {
 
-  // state for cart contents: items, item count
-  // passed to Cart and to Purchase via Products -> Item
-
+  const [cartItems, setCartItems] = useState("4")
+  
     return (
         <>
         <nav>
@@ -17,10 +17,12 @@ const Navigation = () => {
             </li>
             <li>
             <Link to={"cart"}>CART</Link>
+            <div className="cart-count">{cartItems}</div>
             </li>
           </ul>
+          
         </nav>
-        <Outlet />
+        <Outlet context={[cartItems, setCartItems]}/>
         </>
     )
 }

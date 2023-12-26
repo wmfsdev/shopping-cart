@@ -1,7 +1,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
- import items from './mockData'
+import items from './mockData'
 import Products from '../src/components/products';
 
 async function withFetch() {

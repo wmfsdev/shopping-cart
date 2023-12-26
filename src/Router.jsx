@@ -5,6 +5,7 @@ import Cart from './components/cart.jsx';
 import ErrorPage from './error-page.jsx';
 import { createBrowserRouter } from 'react-router-dom';
 
+
 const routesConfig = [
   {
     path: "/",
