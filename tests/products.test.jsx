@@ -1,13 +1,12 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import item from './mockData'
+ import items from './mockData'
 import Products from '../src/components/products';
 
 async function withFetch() {
     try {
         const res = await fetch('https://fakestoreapi.com/products?limit=5');
-       // console.log(res.json())
         const json = await res.json();
         return json;
     } catch(e) {
@@ -19,7 +18,7 @@ async function withFetch() {
 
 const fetchMock = vi
     .spyOn(globalThis, 'fetch')
-    .mockImplementation(() => Promise.resolve({ json: () => Promise.resolve(item) }))
+    .mockImplementation(() => Promise.resolve({ json: () => Promise.resolve(items) }))
 
     describe('withFetch, Promise.resolve', () => {
         it('resolves', async () => {
@@ -44,6 +43,8 @@ const fetchMock = vi
 
             expect(headers).toHaveLength(5) 
             expect(images).toHaveLength(5) 
+
+            screen.debug()
         })
 
         it('renders specific item', async () => {

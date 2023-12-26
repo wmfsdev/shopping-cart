@@ -21,7 +21,9 @@ const Products = () => {
           <Item
             key={obj.id}
             title={obj.title}
-            img={obj.image} /> 
+            img={obj.image}
+            price={obj.price}
+          /> 
         ))} 
       </div>
       { error && <Error error={error}/> }
