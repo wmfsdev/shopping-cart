@@ -15,22 +15,25 @@ describe('renders Item', () => {
                 price={items[0].price}
             />
         )
-        // img
         expect(screen.queryByRole('img')).toBeInTheDocument()
-
-        // header - product title
         expect(screen.queryByRole('heading', { name: /Fjallraven/i })).toBeInTheDocument()
-
-        // input field
         expect(screen.queryByPlaceholderText(/0/i)).toBeInTheDocument()
-
-        // add button
         expect(screen.queryByRole('button')).toBeInTheDocument()
-        
-
-      //  expect(screen.queryByRole('heading')).toBeInTheDocument()
-
         screen.debug()
+    })
+
+    it('consists of 4 single, unique elements', () => {
+        render(
+            <Item 
+                title={items[0].title}
+                img={items[0].img}
+                price={items[0].price}
+            />
+        )
+        expect(screen.queryAllByRole('img')).toHaveLength(1)
+        expect(screen.queryAllByRole('heading')).toHaveLength(1)
+        expect(screen.queryAllByPlaceholderText(/0/i)).toHaveLength(1)
+        expect(screen.queryAllByRole('button')).toHaveLength(1)
     })
 
 })

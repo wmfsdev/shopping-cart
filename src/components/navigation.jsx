@@ -1,6 +1,10 @@
 import { Link, Outlet } from "react-router-dom"
 
 const Navigation = () => {
+
+  // state for cart contents: items, item count
+  // passed to Cart and to Purchase via Products -> Item
+
     return (
         <>
         <nav>
