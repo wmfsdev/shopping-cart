@@ -3,6 +3,7 @@ import Item from "./item"
 import Error from "./error"
 
 const Products = () => {
+
   const [data, setData] = useState(false)
   const [error, setError] = useState(false)
 
@@ -23,9 +24,11 @@ const Products = () => {
             title={obj.title}
             img={obj.image}
             price={obj.price}
-          /> 
+            id={obj.id}
+          />
         ))} 
       </div>
+      
       { error && <Error error={error}/> }
     </>
   )

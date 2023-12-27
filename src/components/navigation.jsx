@@ -3,7 +3,7 @@ import { useState } from "react"
 
 const Navigation = () => {
 
-  const [cartItems, setCartItems] = useState("4")
+  const [cartItems, setCartItems] = useState([])
   
     return (
         <>
@@ -17,10 +17,10 @@ const Navigation = () => {
             </li>
             <li>
             <Link to={"cart"}>CART</Link>
-            <div className="cart-count">{cartItems}</div>
+            {/* <div className="cart-count">{cartItems}</div> */}
             </li>
           </ul>
-          
+          {/* <div>{cartItems}</div> */}
         </nav>
         <Outlet context={[cartItems, setCartItems]}/>
         </>

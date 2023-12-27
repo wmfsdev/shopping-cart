@@ -9,7 +9,7 @@ const [cartItems, setCartItems] = useOutletContext()
     return (
         <>
         <h1>Cart</h1>
-        <div>{cartItems}</div>
+        {/* <div>{cartItems}</div> */}
         </>
     )
 }
