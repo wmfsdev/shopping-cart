@@ -17,10 +17,8 @@ const Navigation = () => {
             </li>
             <li>
             <Link to={"cart"}>CART</Link>
-            {/* <div className="cart-count">{cartItems}</div> */}
             </li>
           </ul>
-          {/* <div>{cartItems}</div> */}
         </nav>
         <Outlet context={[cartItems, setCartItems]}/>
         </>

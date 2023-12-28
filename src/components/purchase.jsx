@@ -3,10 +3,9 @@ import { useOutletContext } from "react-router-dom"
 const Purchase = ({title, img, price, id}) => {
 
     const [cartItems, setCartItems] = useOutletContext()
-
+    
     function handleClick(e) {
         e.preventDefault()
-
         if (cartItems.some(obj => obj.id === id)) {
             updateCart(e)
         } else addToCart(e)
@@ -44,8 +43,7 @@ const Purchase = ({title, img, price, id}) => {
         <>
         <form action="" onSubmit={handleClick}>
         <input type="number" id="quantity" name="quantity" placeholder="0"/>
-        {/* <button type="submit" onClick={addToCart}>ADD</button> */}
-        <button type="submit">ADD</button>
+        <button type="submit" name="1">ADD</button>
         </form>
         </>
     )

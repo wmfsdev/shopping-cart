@@ -1,6 +1,6 @@
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, beforeEach } from '@testing-library/react';
 import items from './mockData'
 import Products from '../src/components/products';
 
@@ -28,6 +28,7 @@ const fetchMock = vi
             expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
             expect(Array.isArray(json)).toEqual(true);
             expect(json.length).toEqual(5);
+
         });
 
         it('renders five (5) items', async () => {
@@ -37,25 +38,25 @@ const fetchMock = vi
             expect(fetchMock.getMockName()).toEqual('fetch')
     
             render(<Products />);
-            
+    
             const headers = await screen.findAllByRole('heading', {level: 2})
             const images = await screen.findAllByRole('img')
 
             expect(headers).toHaveLength(5) 
             expect(images).toHaveLength(5) 
 
-            screen.debug()
         })
 
         it('renders specific item', async () => {
             await withFetch() 
-        
+         
             expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
             expect(fetchMock.getMockName()).toEqual('fetch')
-    
-            render(<Products />);
-            
-            expect(await screen.findByText('Mens Cotton Jacket')).toBeInTheDocument();
+     
+            render(<Products />)
+           
+            const userName = await screen.findByText('Mens Cotton Jacket');
+            expect(userName).toBeInTheDocument();
         })  
     });
 
@@ -79,8 +80,7 @@ const fetchMock = vi
                 expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
                 expect(fetchMock.getMockName()).toEqual('fetch')
         
-                render(<Products />);
-                        
+                render(<Products />);      
                 expect(await screen.findByText('API is down')).toBeInTheDocument();
-            });
+        });
     });

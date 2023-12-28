@@ -33,5 +33,5 @@ const Products = () => {
     </>
   )
 }
-// { error && <h2>{error.message}</h2> }
+
 export default Products
