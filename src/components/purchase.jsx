@@ -14,19 +14,30 @@ const Purchase = ({title, img, price, id}) => {
     
     function addToCart(e) {
         const data = new FormData(e.target)
-        const quantity = data.get("quantity");
-    
+        const quantity = data.get("quantity")
         const item = {
             title: title,
             img: img,
             price: price
         }
+        
         setCartItems([...cartItems, {item: item, id: id, quantity: Number(quantity)}])
-        console.log(cartItems)
     }
 
     function updateCart(e) {
         console.log("updating")
+        
+        const data = new FormData(e.target)
+        const quantity = data.get("quantity")
+
+        setCartItems(cartItems.map(item => {
+            if (item.id === id) {
+                const currentQuantity = Number(item.quantity)
+                return { ...item, quantity: Number(quantity) + currentQuantity }
+            } else {
+                return item
+            }
+        }))
     }
     
     return (
