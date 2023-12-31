@@ -4,7 +4,7 @@ import { useState } from "react"
 const Navigation = () => {
 
   const [cartItems, setCartItems] = useState([])
-  
+  console.log(cartItems)
     return (
         <>
         <nav>
@@ -18,6 +18,8 @@ const Navigation = () => {
             <li>
             <Link to={"cart"}>CART</Link>
             </li>
+            
+            <div>{ cartItems.length >= 1 && cartItems[0].quantity}</div>
           </ul>
         </nav>
         <Outlet context={[cartItems, setCartItems]}/>

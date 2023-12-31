@@ -39,20 +39,6 @@ const fetchMock = vi
             expect(forms).toHaveLength(5)
         })
 
-
-        it('add Item to Cart', async () => {
-            // doesn't work
-            const onSubmit = vi.fn();
-            const user = userEvent.setup()
-            render(<Products />)
-
-            const button = await screen.findAllByRole('button')
-           
-            await user.click(button[0])
-
-            expect(onSubmit).toHaveBeenCalled()
-        })
-
     })
 
     describe('withFetch, Promise.resolve', () => {

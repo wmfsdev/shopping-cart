@@ -30,6 +30,7 @@ exports[`Navigation component > renders navigation component 1`] = `
               CART
             </a>
           </li>
+          <div />
         </ul>
       </nav>
     </div>
@@ -60,6 +61,7 @@ exports[`Navigation component > renders navigation component 1`] = `
             CART
           </a>
         </li>
+        <div />
       </ul>
     </nav>
   </div>,
