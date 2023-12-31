@@ -3,14 +3,19 @@ import { useOutletContext } from "react-router-dom"
 const Purchase = ({title, img, price, id}) => {
 
     const [cartItems, setCartItems] = useOutletContext()
-    
+    console.log([cartItems, setCartItems])
+
+    function test() {
+        console.log("test")
+    }
+
     function handleClick(e) {
         e.preventDefault()
         if (cartItems.some(obj => obj.id === id)) {
             updateCart(e)
         } else addToCart(e)
     }
-    
+
     function addToCart(e) {
         const data = new FormData(e.target)
         const quantity = data.get("quantity")
@@ -38,10 +43,10 @@ const Purchase = ({title, img, price, id}) => {
             }
         }))
     }
-    
+   
     return (
         <>
-        <form action="" onSubmit={handleClick}>
+        <form aria-labelledby="item quantity" action="" onSubmit={test}>
         <input type="number" id="quantity" name="quantity" placeholder="0"/>
         <button type="submit" name="1">ADD</button>
         </form>
