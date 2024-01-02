@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router-dom"
 import { useState } from "react"
+import CartCount from "./cartCount"
+
 
 const Navigation = () => {
 
@@ -17,10 +19,8 @@ const Navigation = () => {
             </li>
             <li>
             <Link to={"cart"}>CART</Link>
-            <div className="cart-quantity" data-testid="cart-quantity">{ cartItems.length >= 1 && cartItems[0].quantity}</div>
+            <CartCount state={cartItems} />
             </li>
-            
-            
           </ul>
         </nav>
         <Outlet context={[cartItems, setCartItems]}/>
