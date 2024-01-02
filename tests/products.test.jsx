@@ -3,7 +3,6 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, beforeEach } from '@testing-library/react';
 import items from './mockData'
 import Products from '../src/components/products';
-import { userEvent } from '@testing-library/user-event';
 
 
 async function withFetch() {
