@@ -1,22 +1,11 @@
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, beforeEach } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import items from './mockData'
 import { userEvent } from '@testing-library/user-event';
-import { BrowserRouter, RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { routesConfig } from '../src/Router';
 
-
-// async function withFetch() {
-//     try {
-//         const res = await fetch('https://fakestoreapi.com/products?limit=5');
-//         const json = await res.json();
-//         return json;
-//     } catch(e) {
-//         console.log(e)
-//         return e
-//     }
-// }
 
 const fetchMock = vi
     .spyOn(globalThis, 'fetch')
@@ -25,23 +14,22 @@ const fetchMock = vi
 
 describe('Purchase functionality', () => {
 
-    it('renders null when cart empty', async () => {
+    const user = userEvent.setup()
+
+    beforeEach( async() => {
         const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
         render(<RouterProvider router={router} />)
 
+        await user.click(screen.getByRole('link', {name: /store/i}))
+      })
+
+    it('renders null when cart empty', async () => {
         const cartQuantity = await screen.findByTestId('cart-quantity')
         screen.debug(cartQuantity)
         expect(cartQuantity.nodeValue).toBeNull()
     })
 
-    it('renders purchase quantity (1)', async () => {
-
-        const user = userEvent.setup()
-        
-        const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
-        render(<RouterProvider router={router} />)
-        await user.click(screen.getByRole('link', {name: /store/i}))
-
+    it('renders (1) purchase', async () => {
         const button = await screen.findAllByRole('button')
         const input = await screen.findAllByRole('spinbutton')
 
@@ -52,14 +40,7 @@ describe('Purchase functionality', () => {
         expect(cartQuantity.textContent).toEqual("1")
     })
 
-    it('renders multiple purchases (4)', async () => {
-
-        const user = userEvent.setup()
-        
-        const router = createMemoryRouter(routesConfig, {initialEntries: ["/", "/storefront", "/products", "/cart"]})
-        render(<RouterProvider router={router} />)
-        await user.click(screen.getByRole('link', {name: /store/i}))
-
+    it('renders (4) purchases, same item', async () => {
         const button = await screen.findAllByRole('button')
         const input = await screen.findAllByRole('spinbutton')
 
@@ -70,5 +51,33 @@ describe('Purchase functionality', () => {
         expect(cartQuantity.textContent).toEqual("4")
     })
 
+    it('renders (6) purchases, different items', async () => {
+        const button = await screen.findAllByRole('button')
+        const input = await screen.findAllByRole('spinbutton')
+
+        await userEvent.type(input[0], "1")
+        await userEvent.type(input[1], "2")
+        await userEvent.type(input[2], "3")
+        await user.click(button[0])
+        await user.click(button[1])
+        await user.click(button[2])
+
+        const cartQuantity = await screen.findByTestId('cart-quantity')
+        expect(cartQuantity.textContent).toEqual("6")
+    })
+
+    it('renders "additional" purchases (1 + 2), same item', async () => {
+        const button = await screen.findAllByRole('button')
+        const input = await screen.findAllByRole('spinbutton')
+
+        await userEvent.type(input[0], "1")
+        await user.click(button[0])
+        await userEvent.type(input[0], "{backspace}")
+        await userEvent.type(input[0], "2")
+        await user.click(button[0])
+
+        const cartQuantity = await screen.findByTestId('cart-quantity')
+        expect(cartQuantity.textContent).toEqual("3")
+    })
 })
 
