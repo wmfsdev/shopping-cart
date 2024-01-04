@@ -15,7 +15,6 @@ describe('App', () => {
         <App />
       </BrowserRouter>
       );
-   // screen.debug();
   });
 });
 
@@ -46,7 +45,7 @@ describe('Navigation Router', () => {
 })
 
 
- describe('Navigation component', () => {
+describe('Navigation component', () => {
 
     it('renders navigation component', () => {
         const container = render(
@@ -83,4 +82,4 @@ describe('Navigation Router', () => {
         expect(screen.getByRole('link', {name: /store/i}))
         expect(screen.getByRole('link', {name: /cart/i}))
     })
-   });
+});

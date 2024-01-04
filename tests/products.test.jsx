@@ -1,6 +1,6 @@
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, beforeEach } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import items from './mockData'
 import Products from '../src/components/products';
 
@@ -18,7 +18,7 @@ async function withFetch() {
 
 vi.mock("react-router-dom", async () => {
     let actual = await vi.importActual("react-router-dom");
-    console.log(actual)
+    // console.log(actual)
     return {
         ...actual,
         useOutletContext: vi.fn().mockReturnValue([[], test()]),
@@ -37,7 +37,6 @@ const fetchMock = vi
             const forms = await screen.findAllByRole('form')
             expect(forms).toHaveLength(5)
         })
-
     })
 
     describe('withFetch, Promise.resolve', () => {
@@ -50,60 +49,56 @@ const fetchMock = vi
             expect(Array.isArray(json)).toEqual(true);
             expect(json.length).toEqual(5);
         });
-
-
-        // it('renders five (5) items', async () => {
-        //     await withFetch() 
         
-        //     expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
-        //     expect(fetchMock.getMockName()).toEqual('fetch')
+        it('renders five (5) items', async () => {
+            await withFetch() 
+        
+            expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
+            expect(fetchMock.getMockName()).toEqual('fetch')
     
-        //     render(<Products />);
+            render(<Products />);
     
-        //     const headers = await screen.findAllByRole('heading', {level: 2})
-        //     const images = await screen.findAllByRole('img')
+            const headers = await screen.findAllByRole('heading', {level: 2})
+            const images = await screen.findAllByRole('img')
 
-        //     expect(headers).toHaveLength(5) 
-        //     expect(images).toHaveLength(5) 
+            expect(headers).toHaveLength(5) 
+            expect(images).toHaveLength(5) 
+        })
 
-        // })
-
-        // it('renders specific item', async () => {
-        //     await withFetch() 
+        it('renders specific item', async () => {
+            await withFetch() 
          
-        //     expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
-        //     expect(fetchMock.getMockName()).toEqual('fetch')
+            expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
+            expect(fetchMock.getMockName()).toEqual('fetch')
      
-        //     render(<Products />)
+            render(<Products />)
            
-        //     const userName = await screen.findByText('Mens Cotton Jacket');
-        //     expect(userName).toBeInTheDocument();
-            
-        //     screen.debug()
-        // })  
+            const userName = await screen.findByText('TEST - Mens Cotton Jacket');
+            expect(userName).toBeInTheDocument();
+        })  
     });
 
 
-    // describe('withFetch, Promise.reject', () => {
+    describe('withFetch, Promise.reject', () => {
 
-    //     beforeEach(() => {
-    //         fetchMock.mockImplementation(() => Promise.reject({ message: 'API is down'}))
-    //     }) 
+        beforeEach(() => {
+            fetchMock.mockImplementation(() => Promise.reject({ message: 'API is down'}))
+        }) 
 
-    //         it('rejects', async () => {
-    //             const error = await withFetch()
-    //             expect(fetchMock.getMockName()).toEqual('fetch')
-    //             expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
-    //             expect(error.message).toBe('API is down')
-    //         });
+            it('rejects', async () => {
+                const error = await withFetch()
+                expect(fetchMock.getMockName()).toEqual('fetch')
+                expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
+                expect(error.message).toBe('API is down')
+            });
 
-    //         it('error message is shown', async () => {
-    //             await withFetch() 
+            it('error message is shown', async () => {
+                await withFetch() 
         
-    //             expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
-    //             expect(fetchMock.getMockName()).toEqual('fetch')
+                expect(fetchMock).toHaveBeenCalledWith('https://fakestoreapi.com/products?limit=5');
+                expect(fetchMock.getMockName()).toEqual('fetch')
         
-    //             render(<Products />);      
-    //             expect(await screen.findByText('API is down')).toBeInTheDocument();
-    //     });
-    // });
+                render(<Products />);      
+                expect(await screen.findByText('API is down')).toBeInTheDocument();
+        });
+    });

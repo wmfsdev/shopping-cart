@@ -29,10 +29,11 @@ exports[`Navigation component > renders navigation component 1`] = `
             >
               CART
             </a>
+            <div
+              class="cart-quantity"
+              data-testid="cart-quantity"
+            />
           </li>
-          <div
-            class="cart-quantity"
-          />
         </ul>
       </nav>
     </div>
@@ -62,10 +63,11 @@ exports[`Navigation component > renders navigation component 1`] = `
           >
             CART
           </a>
+          <div
+            class="cart-quantity"
+            data-testid="cart-quantity"
+          />
         </li>
-        <div
-          class="cart-quantity"
-        />
       </ul>
     </nav>
   </div>,

@@ -21,7 +21,7 @@ describe('Purchase functionality', () => {
         render(<RouterProvider router={router} />)
 
         await user.click(screen.getByRole('link', {name: /store/i}))
-      })
+    })
 
     it('renders null when cart empty', async () => {
         const cartQuantity = await screen.findByTestId('cart-quantity')
@@ -78,6 +78,21 @@ describe('Purchase functionality', () => {
 
         const cartQuantity = await screen.findByTestId('cart-quantity')
         expect(cartQuantity.textContent).toEqual("3")
+    })
+
+    it('renders purchases navigating between pages', async() => {
+
+        const button = await screen.findAllByRole('button')
+        const input = await screen.findAllByRole('spinbutton')
+
+        await userEvent.type(input[0], "1")
+        await user.click(button[0])
+
+        await user.click(screen.getByRole('link', {name: /home/i}))
+
+        const cartQuantity = await screen.findByTestId('cart-quantity')
+        expect(cartQuantity.textContent).toEqual("1")
+        screen.debug()
     })
 })
 
