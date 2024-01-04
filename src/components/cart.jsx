@@ -12,7 +12,9 @@ console.log(cartItems)
         { cartItems && cartItems.map((item, index) => (
             <CartItem
                 key={index}
-                item={item}
+                cartState={cartItems}
+                itemIndex={index}
+                setCartItems={setCartItems}
             />
         ))}
         
