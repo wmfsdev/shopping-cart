@@ -42,7 +42,7 @@ const Purchase = ({title, img, price, id}) => {
     return (
         <>
         <form aria-labelledby="item quantity" action="" onSubmit={handleClick}>
-        <input type="number" id="quantity" name="quantity" placeholder="0" required/>
+        <input type="number" id="quantity" name="quantity" placeholder="0" min={0} required/>
         <button type="submit" name="1">ADD</button>
         </form>
         </>
