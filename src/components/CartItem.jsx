@@ -32,14 +32,16 @@ function handleClick(cartItemId, e) {
 
     return (
         
-        <div className="cart-item">
-            <p>{cartState[itemIndex].item.title}</p>
-            <form action="" onSubmit={handleSubmit}>
+        <div className="cart-items">
+            
+            <form aria-labelledby="test" className="cart-item" action="" onSubmit={handleSubmit}>
+                <p>{cartState[itemIndex].item.title}</p>
                 <input type="number" name="quantity" value={inputValue} onChange={handleChange} min={0}/>
                 <button type="submit">UPDATE</button>
                 <button onClick={(e) => handleClick(cartState[itemIndex].id, e)}>REMOVE</button>
+                <div className="item-sub-total">£{itemSubTotal}</div>
             </form>
-            <div className="item-sub-total">£{itemSubTotal}0</div>
+            
         </div>
     )
 }

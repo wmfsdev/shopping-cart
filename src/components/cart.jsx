@@ -5,7 +5,7 @@ import CartItem from "./CartItem"
 const Cart = () => {
 
 const [cartItems, setCartItems] = useOutletContext()
-console.log(cartItems)
+// console.log(cartItems)
     return (
         <>
         <h1>CART</h1>
