@@ -4,7 +4,7 @@ import Storefront from './components/storefront.jsx';
 import Cart from './components/cart.jsx';
 import ErrorPage from './error-page.jsx';
 import { createBrowserRouter } from 'react-router-dom';
-
+import ProductDetails from './components/ProductDetails.jsx';
 
 const routesConfig = [
   {
@@ -12,8 +12,9 @@ const routesConfig = [
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      { path: "products/:id", element: <ProductDetails /> },
       { path: "storefront", element: <Storefront /> },
-      { path: "products", element: <Products /> },
+      { path: "products/*", element: <Products /> },
       { path: "cart", element: <Cart /> },
     ]
   },
