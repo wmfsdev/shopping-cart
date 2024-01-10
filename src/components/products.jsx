@@ -24,6 +24,7 @@ const Products = () => {
             title={obj.title}
             img={obj.image}
             price={obj.price}
+            desc={obj.description}
             id={obj.id}
           />
         ))} 

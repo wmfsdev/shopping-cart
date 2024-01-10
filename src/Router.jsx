@@ -14,7 +14,7 @@ const routesConfig = [
     children: [
       { path: "products/:id", element: <ProductDetails /> },
       { path: "storefront", element: <Storefront /> },
-      { path: "products/*", element: <Products /> },
+      { path: "products", element: <Products /> },
       { path: "cart", element: <Cart /> },
     ]
   },

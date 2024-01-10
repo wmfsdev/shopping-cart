@@ -1,16 +1,21 @@
 
-
-import { useParams } from "react-router-dom"
-// import { useOutletContext } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 
 const ProductDetails = () => {
 
-// const [cartItems, setCartItems] = useOutletContext()
+    const { state } = useLocation();
+    const { id } = useParams()
 
-    const {id} = useParams()
+    const { title, img, price, desc } = state
 
     return (
-        <h1>{id}</h1>
+        <>
+     
+        <img className="full-size-product" src={img} alt="" /> 
+        <h1>{title}</h1>
+        <h2>£{price}</h2>
+        <h3>{desc}</h3>
+        </>
 
     )
 }

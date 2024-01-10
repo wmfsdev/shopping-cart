@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 const CartItem = ({cartState, itemIndex, setCartItems}) => {
 
@@ -35,7 +36,8 @@ function handleClick(cartItemId, e) {
         <div className="cart-items">
             
             <form aria-labelledby="test" className="cart-item" action="" onSubmit={handleSubmit}>
-                <p>{cartState[itemIndex].item.title}</p>
+                <Link to={`../products/${itemIndex + 1}`} state={cartState[itemIndex].item}>{cartState[itemIndex].item.title}</Link>
+                {/* <p>{cartState[itemIndex].item.title}</p> */}
                 <input type="number" name="quantity" value={inputValue} onChange={handleChange} min={0}/>
                 <button type="submit">UPDATE</button>
                 <button onClick={(e) => handleClick(cartState[itemIndex].id, e)}>REMOVE</button>
