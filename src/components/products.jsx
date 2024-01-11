@@ -16,8 +16,9 @@ const Products = () => {
   
   return (
       <>
-      <h1>PRODUCTS!!</h1>
+    <h1>Browse our product range</h1>
       <div className="product-view">
+      {/* <h1>Browse our product range</h1> */}
         { data && data.map((obj) => (
           <Item
             key={obj.id}
