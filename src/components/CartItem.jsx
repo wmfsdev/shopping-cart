@@ -41,9 +41,9 @@ function handleClick(cartItemId, e) {
                 <input type="number" name="quantity" value={inputValue} onChange={handleChange} min={0}/>
                 <button type="submit">UPDATE</button>
                 <button onClick={(e) => handleClick(cartState[itemIndex].id, e)}>REMOVE</button>
-                <div className="item-sub-total">£{itemSubTotal}</div>
+               
             </form>
-            
+             <div className="item-sub-total">£{itemSubTotal.toFixed(2)}</div>
         </div>
     )
 }

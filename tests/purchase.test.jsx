@@ -80,7 +80,7 @@ describe('Purchase functionality', () => {
         expect(cartQuantity.textContent).toEqual("3")
     })
 
-    it('renders purchases navigating between pages', async() => {
+    it('renders purchases (1) navigating between pages', async() => {
 
         const button = await screen.findAllByRole('button')
         const input = await screen.findAllByRole('spinbutton')

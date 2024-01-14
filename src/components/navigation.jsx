@@ -12,7 +12,7 @@ const Navigation = () => {
         <nav>
           <ul className="nav-list">
             <li>
-            <Link to={"storefront"}>HOME</Link>
+            <Link to={"storefront"}>TOP-SHOP</Link>
             </li>
             <li>
             <Link to={"products"}>STORE</Link>
