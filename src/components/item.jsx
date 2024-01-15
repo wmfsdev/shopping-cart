@@ -2,17 +2,17 @@ import { Link } from "react-router-dom"
 
 import Purchase from "./purchase"
 
-const Item = ({title, img, price, desc, id}) => {
+const Item = ({title, image, price, description, id}) => {
 
     return (
         <div className="product">
             <div className="product-img-container">
-                <img src={img} alt="" /> 
+                <img src={image} alt="" /> 
             </div>
             <div className="purchase-info">
-                <Link to={`${id}`} state={{title, img, price, desc}}>{title}</Link>
-                <p>£{price}</p>
-                <Purchase title={title} img={img} price={price} id={id}/>
+                <Link to={`${id}`} state={{title, image, price, description}}>{title}</Link>
+                <p>£{price.toFixed(2)}</p>
+                <Purchase title={title} image={image} price={price} id={id}/>
             </div>
            
         </div>

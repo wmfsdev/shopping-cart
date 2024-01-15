@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-const ProductNav = ({limit, setLimit}) => {
+const ProductNav = ({displayCount, setDisplayCount}) => {
 
     return (
         <div className="product-nav-footer">
             <label>No. of Products To Display:
             <select 
-                value={limit} 
-                onChange={(e) => setLimit(e.target.value)} 
+                value={displayCount} 
+                onChange={(e) => setDisplayCount(e.target.value)} 
                 name="product-display" 
                 id="display-count"
             >

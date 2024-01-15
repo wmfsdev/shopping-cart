@@ -1,5 +1,4 @@
 const CartTotal = ({cartState}) => {
-    console.log(cartState)
 
     const total = cartState.reduce(
         (acc, cur) => acc + (cur.item.price * cur.quantity), 0)

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const Storefront = () => {
 
@@ -18,13 +19,16 @@ const Storefront = () => {
         .catch((error) => setError(error))
     }, []);
 
-    console.log(data)
-
     return (
+      
         <div className="store-front-container">
-            <img src={data.image} alt="" />
+            <Link to={`../products/${data.id}`} state={data} >
+                <img src={data.image} alt="" />
+            </Link>
+           
             <h1>TRENDING PRODUCTS</h1>
         </div>
+        
     )
 }
 

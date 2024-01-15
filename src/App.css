@@ -151,15 +151,28 @@ h2 {
   justify-content: center;
 }
 
-.full-size-product {
-  max-height: 600px;
-  max-width: 600px;
-}
-
 form #quantity {
   width: 170px;
   margin-right: 7px;;
 }
+
+/* SINGLE PRODUCT PAGE */
+
+.product-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin-top: 50px;
+  padding-bottom: 70px;
+}
+
+.full-size-product {
+  max-width: 600px;
+}
+
 
 /* NAV FOOTER */
 

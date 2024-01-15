@@ -37,7 +37,6 @@ function handleClick(cartItemId, e) {
             
             <form aria-labelledby="test" className="cart-item" action="" onSubmit={handleSubmit}>
                 <Link to={`../products/${itemIndex + 1}`} state={cartState[itemIndex].item}>{cartState[itemIndex].item.title}</Link>
-                {/* <p>{cartState[itemIndex].item.title}</p> */}
                 <input type="number" name="quantity" value={inputValue} onChange={handleChange} min={0}/>
                 <button type="submit">UPDATE</button>
                 <button onClick={(e) => handleClick(cartState[itemIndex].id, e)}>REMOVE</button>

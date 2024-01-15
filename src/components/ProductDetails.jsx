@@ -6,17 +6,15 @@ const ProductDetails = () => {
     const { state } = useLocation();
     const { id } = useParams()
 
-    const { title, img, price, desc } = state
+    const { title, image, price, description } = state
 
     return (
-        <>
-     
-        <img className="full-size-product" src={img} alt="" /> 
-        <h1>{title}</h1>
-        <h2>£{price}</h2>
-        <h3>{desc}</h3>
-        </>
-
+        <div className="product-page-container">
+            <img className="full-size-product" src={image} alt="" /> 
+            <h1>{title}</h1>
+            <h2>£{price.toFixed(2)}</h2>
+            <h3>{description}</h3>
+        </div>
     )
 }
 

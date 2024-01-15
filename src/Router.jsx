@@ -13,6 +13,7 @@ const routesConfig = [
     errorElement: <ErrorPage />,
     children: [
       { path: "products/:id", element: <ProductDetails /> },
+      { path: "/", element: <Storefront /> },
       { path: "storefront", element: <Storefront /> },
       { path: "products", element: <Products /> },
       { path: "cart", element: <Cart /> },

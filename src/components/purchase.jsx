@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom"
 
-const Purchase = ({title, img, price, id}) => {
+const Purchase = ({title, image, price, id}) => {
 
     const [cartItems, setCartItems] = useOutletContext()
    
@@ -16,11 +16,10 @@ const Purchase = ({title, img, price, id}) => {
         const quantity = data.get("quantity")
         const item = {
             title: title,
-            img: img,
+            image: image,
             price: price
         }
         setCartItems([...cartItems, {item: item, id: id, quantity: Number(quantity)}])
-        console.log("worked")
     }
 
     function updateCart(e) {

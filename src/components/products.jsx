@@ -9,31 +9,31 @@ const Products = () => {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const [limit, setLimit] = useState(5)
+  const [displayCount, setDisplayCount] = useState(5)
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products?limit=${limit}`)
+    fetch(`https://fakestoreapi.com/products?limit=${displayCount}`)
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(true))
-  }, [limit]);
+  }, [displayCount]);
   
   return (
-      <>
+    <>
     <h1>Browse Our Product Range</h1>
       <div className="product-view">
         { data && data.map((obj) => (
           <Item
             key={obj.id}
             title={obj.title}
-            img={obj.image}
+            image={obj.image}
             price={obj.price}
-            desc={obj.description}
+            description={obj.description}
             id={obj.id}
           />
         ))}
-        { loading && <ProductNav limit={limit} setLimit={setLimit}/> }
+        { loading && <ProductNav displayCount={displayCount} setDisplayCount={setDisplayCount}/> }
       </div>
       { error && <Error error={error}/> }
     </>
