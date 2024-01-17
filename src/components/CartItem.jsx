@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
 
-const CartItem = ({cartState, itemIndex, setCartItems}) => {
+const CartItem = ({cartState, itemIndex, setCartItems}) => {  
 
 const [inputValue, setInputValue] = useState(cartState[itemIndex].quantity)
 
@@ -45,6 +46,12 @@ function handleClick(cartItemId, e) {
              <div className="item-sub-total">£{itemSubTotal.toFixed(2)}</div>
         </div>
     )
+}
+
+CartItem.propTypes = {
+    cartState: PropTypes.array,
+    itemIndex: PropTypes.number,
+    setCartItems: PropTypes.func
 }
 
 export default CartItem

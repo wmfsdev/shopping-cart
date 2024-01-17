@@ -1,5 +1,8 @@
 import { useOutletContext } from "react-router-dom"
 
+import PropTypes from 'prop-types'
+
+
 const Purchase = ({title, image, description, price, id}) => {
 
     const [cartItems, setCartItems] = useOutletContext()
@@ -24,8 +27,6 @@ const Purchase = ({title, image, description, price, id}) => {
     }
 
     function updateCart(e) {
-        console.log("updating")
-        
         const data = new FormData(e.target)
         const quantity = data.get("quantity")
 
@@ -47,6 +48,14 @@ const Purchase = ({title, image, description, price, id}) => {
         </form>
         </>
     )
+}
+
+Purchase.propTypes = {
+    title: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    id: PropTypes.number,
 }
 
 export default Purchase

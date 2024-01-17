@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 
 const CartCount = ({state}) => {
 
@@ -6,6 +7,10 @@ const CartCount = ({state}) => {
     return (
         <div className="cart-quantity" data-testid="cart-quantity">{ state.length >= 1 && quantity }</div>
     )
+}
+
+CartCount.propTypes = {
+    state: PropTypes.array, 
 }
 
 export default CartCount

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
 
 import Purchase from "./purchase"
 
@@ -17,6 +18,15 @@ const Item = ({title, image, price, description, id}) => {
            
         </div>
     )
+}
+
+Item.propTypes = {
+    title: PropTypes.string,
+    image: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    
 }
 
 export default Item

@@ -1,4 +1,5 @@
-import { useState } from "react"
+
+import PropTypes from 'prop-types'
 
 const ProductNav = ({displayCount, setDisplayCount}) => {
 
@@ -19,5 +20,11 @@ const ProductNav = ({displayCount, setDisplayCount}) => {
         </div>
     )
 }
+
+ProductNav.propTypes = {
+    displayCount: PropTypes.number,
+    setDisplayCount: PropTypes.func,
+}
+
 
 export default ProductNav

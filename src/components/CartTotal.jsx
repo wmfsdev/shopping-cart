@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const CartTotal = ({cartState}) => {
 
     const total = cartState.reduce(
@@ -9,6 +11,10 @@ const CartTotal = ({cartState}) => {
             <p>£{total.toFixed(2)}</p>
         </div>
     )
+}
+
+CartTotal.propTypes = {
+    cartState: PropTypes.array,
 }
 
 export default CartTotal
