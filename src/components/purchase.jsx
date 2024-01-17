@@ -1,9 +1,9 @@
 import { useOutletContext } from "react-router-dom"
 
-const Purchase = ({title, image, price, id}) => {
+const Purchase = ({title, image, description, price, id}) => {
 
     const [cartItems, setCartItems] = useOutletContext()
-   
+
     function handleClick(e) {
         e.preventDefault()
         if (cartItems.some(obj => obj.id === id)) {
@@ -17,6 +17,7 @@ const Purchase = ({title, image, price, id}) => {
         const item = {
             title: title,
             image: image,
+            description: description,
             price: price
         }
         setCartItems([...cartItems, {item: item, id: id, quantity: Number(quantity)}])

@@ -12,7 +12,7 @@ const Item = ({title, image, price, description, id}) => {
             <div className="purchase-info">
                 <Link to={`${id}`} state={{title, image, price, description}}>{title}</Link>
                 <p>£{price.toFixed(2)}</p>
-                <Purchase title={title} image={image} price={price} id={id}/>
+                <Purchase title={title} image={image} price={price} description={description} id={id}/>
             </div>
            
         </div>
